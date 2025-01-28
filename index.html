@@ -1,24 +1,59 @@
 <!DOCTYPE html>
-<html style=" min-width: 550;">
-    <head>
-        <style>
-            body {
-              background-image: url('orchidae-photo.jpg');
-              background-color: darkgrey;
-              background-attachment: fixed;
-              background-position: center;
-              background-repeat: no-repeat;
-            }
-            h1{
-                font-style: oblique; color:ghostwhite; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;-webkit-text-stroke-width: 1px;
-            -webkit-text-stroke-color: black;
-            }
-        </style>
-    </head>
-    <body>
-        <h1>С Праздником!</h1>
-        <iframe width="1000" height="550" style="border:3px solid black; margin:auto; display:block" frameborder="0" src="https://crosswordlabs.com/embed/test-35001"></iframe>
-        <!-- <h1>Ищи под монитором в детской!</h1> -->
-    </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Image</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f4f4f9;
+    }
+    img {
+      max-width: 100%;
+      max-height: 80vh;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    }
+  </style>
+</head>
+<body>
+  <img id="randomImage" alt="Random Image">
+  <script>
+    // Inline the JSON
+    // const images = [
+    //     "image1.png",
+    //     "image2.png",
+    //     "iamge3.png",
+    //     "Screenshot (15).png",
+    //     "Screenshot (16).png",
+    //     "Screenshot (18).png"
+    // ];
+  
+    // // Pick a random image
+    // const randomImage = images[Math.floor(Math.random() * images.length)];
+    // const fullname = "images/"+randomImage;
 
+    // console.log(fullname);
+  
+    // // Display it
+    // document.getElementById("randomImage").src = fullname;
+
+    fetch('images.json')
+      .then(response => response.json())
+      .then(images => {
+        // Select a random image
+        const randomImage = images[Math.floor(Math.random() * images.length)];
+        const fullname = "images/"+randomImage;
+        // Display the random image
+        document.getElementById('randomImage').src = fullname;
+      })
+      .catch(error => console.error('Error fetching images:', error));
+  </script>
+  
+</body>
 </html>
